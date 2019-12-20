@@ -49,12 +49,12 @@ declare namespace API {
     export namespace postTodos {
       export class Params {}
 
-      export type Response = any;
+      export type Response = defs.Todo;
       export const init: Response;
       export function request(
         params: Params,
         bodyParams: defs.CreateTodoDto,
-      ): Promise<any>;
+      ): Promise<defs.Todo>;
     }
 
     /**
@@ -67,12 +67,12 @@ declare namespace API {
         id: number;
       }
 
-      export type Response = any;
+      export type Response = defs.Todo;
       export const init: Response;
       export function request(
         params: Params,
         bodyParams: defs.UpdateTodoDto,
-      ): Promise<any>;
+      ): Promise<defs.Todo>;
     }
 
     /**
@@ -85,9 +85,9 @@ declare namespace API {
         id: number;
       }
 
-      export type Response = any;
+      export type Response = defs.Todo;
       export const init: Response;
-      export function request(params: Params): Promise<any>;
+      export function request(params: Params): Promise<defs.Todo>;
     }
   }
 }

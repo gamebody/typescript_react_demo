@@ -1,4 +1,5 @@
 {
     "originUrl": "http://localhost:3000/api-json",
-    "outDir": "./src/api"
+    "outDir": "./src/api",
+    "templatePath": "./serviceTemplate"
 }

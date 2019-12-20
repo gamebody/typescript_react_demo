@@ -3,6 +3,7 @@
     "mods": [
       {
         "description": "",
+        "name": "todos",
         "interfaces": [
           {
             "consumes": [
@@ -41,8 +42,8 @@
             "path": "/todos",
             "response": {
               "typeArgs": [],
-              "typeName": "",
-              "isDefsType": false,
+              "typeName": "Todo",
+              "isDefsType": true,
               "templateIndex": -1,
               "compileTemplateKeyword": "#/definitions/",
               "enum": []
@@ -73,8 +74,8 @@
             "path": "/todos/{id}",
             "response": {
               "typeArgs": [],
-              "typeName": "",
-              "isDefsType": false,
+              "typeName": "Todo",
+              "isDefsType": true,
               "templateIndex": -1,
               "compileTemplateKeyword": "#/definitions/",
               "enum": []
@@ -118,8 +119,8 @@
             "path": "/todos/{id}",
             "response": {
               "typeArgs": [],
-              "typeName": "",
-              "isDefsType": false,
+              "typeName": "Todo",
+              "isDefsType": true,
               "templateIndex": -1,
               "compileTemplateKeyword": "#/definitions/",
               "enum": []
@@ -140,13 +141,13 @@
               }
             ]
           }
-        ],
-        "name": "todos"
+        ]
       }
     ],
     "baseClasses": [
       {
         "name": "CreateTodoDto",
+        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -160,11 +161,11 @@
             "name": "text",
             "required": true
           }
-        ],
-        "templateArgs": []
+        ]
       },
       {
         "name": "Todo",
+        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -202,11 +203,11 @@
             "name": "text",
             "required": true
           }
-        ],
-        "templateArgs": []
+        ]
       },
       {
         "name": "UpdateTodoDto",
+        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -221,8 +222,7 @@
             "description": "true: 完成，false：未完成",
             "required": true
           }
-        ],
-        "templateArgs": []
+        ]
       }
     ],
     "name": ""
