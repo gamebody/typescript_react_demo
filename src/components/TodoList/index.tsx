@@ -1,12 +1,18 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 
 import TodoItem from '../TodoItem'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState, RootDispatch } from '../../store'
-import { Filter, toggleTodo } from '../../store/actions'
+import { Filter, toggleTodo, ReceiveTodos } from '../../store/actions'
 import { Todo } from '../../store/reducers/todos'
 
-let TodoList:FC<Props> = ({todos, onTodoClick}) => {
+let TodoList:FC<Props> = ({todos, onTodoClick, ReceiveTodos}) => {
+
+    useEffect(() => {
+        ReceiveTodos()
+        return () => {};
+    }, [ReceiveTodos])
+
     const list = todos.map(todo => {
         return (
             <TodoItem
@@ -43,6 +49,9 @@ const mapDispatchToProps = (dispatch: RootDispatch) => {
     return {
         onTodoClick: (id: number) => {
             dispatch(toggleTodo(id))
+        },
+        ReceiveTodos: () => {
+            dispatch(ReceiveTodos() as any)
         }
     }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState, RootDispatch } from '../../store'

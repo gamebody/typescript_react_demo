@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux'
+import { combineReducers, createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 
 import input from "./reducers/input";
 import todos from './reducers/todos'
@@ -11,7 +12,7 @@ const rootReducer = combineReducers({
     input
 })
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
 export type RootState = ReturnType<typeof rootReducer>
 export type RootDispatch = typeof store.dispatch

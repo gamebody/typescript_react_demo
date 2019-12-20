@@ -1,6 +1,6 @@
 import React, { FormEvent, FC } from 'react'
 import { RootState, RootDispatch } from '../../store'
-import { setInputValue, addTodoAction } from '../../store/actions'
+import { setInputValue, asyncAddTodo } from '../../store/actions'
 import { connect, ConnectedProps } from 'react-redux'
 import Filter from './Filter'
 
@@ -18,6 +18,7 @@ const mapStateToProps = (state: RootState) => {
         inputValue: state.input
     }
 }
+
 const mapDispatchToProps = (dispatch: RootDispatch) => {
     return {
         onChange: (e: FormEvent<HTMLInputElement>) => {
@@ -26,11 +27,7 @@ const mapDispatchToProps = (dispatch: RootDispatch) => {
         onKeyDown: (value: string, e: KeyboardEvent) => {
             if (e.keyCode === 13) {
                 if (value) {
-                    const payLoad = {
-                        id: Math.random(),
-                        text: value
-                    }
-                    dispatch(addTodoAction(payLoad))
+                    dispatch(asyncAddTodo(value) as any)
                     dispatch(setInputValue(""))
                 }
             }

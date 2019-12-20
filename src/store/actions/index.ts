@@ -1,4 +1,32 @@
-import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, SET_INPUT_VALUE } from '../actionTypes'
+import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, SET_INPUT_VALUE, RECEIVE_TODOS } from '../actionTypes'
+import { ThunkAction } from 'redux-thunk'
+import { RootState, RootDispatch } from '..'
+import { Action } from 'redux'
+
+import axios from 'axios'
+import qs from 'querystring'
+import { Todo } from '../reducers/todos'
+
+export type ReceiveTodosAction = {
+    type: typeof RECEIVE_TODOS,
+    todos: Todo[]
+}
+export const ReceiveTodosAction = (todos: Todo[]): ReceiveTodosAction => {
+    return {
+        type: RECEIVE_TODOS,
+        todos
+    }
+}
+export const ReceiveTodos = (): ThunkAction<void, RootState, null, Action<string>> => {
+    return (dispatch: RootDispatch) => {
+        return axios.get('/todos').then(res => {
+
+            if (res.data.code === 1) {
+                dispatch(ReceiveTodosAction(res.data.data))
+            }
+        })
+    }
+}
 
 export type AddTodoAction = {
     type: typeof ADD_TODO
@@ -16,6 +44,23 @@ export const addTodoAction = (payload: Ipayload): AddTodoAction => {
         text: payload.text,
     }
 }
+export const asyncAddTodo = (text: string): ThunkAction<void, RootState, null, Action<string>> => {
+    return (dispatch: RootDispatch) => {
+        return axios.post('/todos', qs.stringify({ text })).then(res => {
+
+            if (res.data.code === 1) {
+                const payLoad = {
+                    id: res.data.data.id,
+                    text: res.data.data.text,
+                    actived: res.data.data.actived,
+                    completed: res.data.data.completed
+                }
+                dispatch(addTodoAction(payLoad))
+            }
+        })
+    }
+}
+
 
 export type ToggleTodoAction = {
     type: typeof TOGGLE_TODO
@@ -57,4 +102,7 @@ export const setInputValue = (value: string): setInputValueAction => {
         value
     }
 }
+
+
+// 
 
