@@ -7,7 +7,11 @@ import Filter from './Filter'
 const Header:FC<Props> = ({ inputValue, onChange, onKeyDown }) => {
     return (
         <>
-            <input value={inputValue} onChange={onChange} onKeyDown={(e: any) => onKeyDown(inputValue, e)} placeholder="请输入待完成事项"></input>
+            <input
+                value={inputValue} 
+                onChange={onChange} 
+                onKeyDown={(e: any) => onKeyDown(inputValue, e)}
+                placeholder="请输入待完成事项"></input>
             <Filter />
         </>
     )

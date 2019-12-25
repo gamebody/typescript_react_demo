@@ -1,0 +1,1 @@
+export const getUrl = (any: any, any1: any, any2: any) => {}

@@ -17,8 +17,8 @@ export default class MyGenerator extends CodeGenerator {
              * @description ${inter.description}
              */
             
-            import { getUrl } from 'src/utils/getUrl';
-            import Request from 'src/utils/requests';
+            import { getUrl } from '../../../utils/getUrl';
+            import Request from '../../../utils/requests';
             import * as defs from '../../baseClass';
         
             export ${paramsCode}
