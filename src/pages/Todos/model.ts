@@ -1,6 +1,6 @@
 import { Todo } from "../../store/reducers/todos"
-import { ToggleTodoAction, AddTodoAction, ReceiveTodosAction } from "../../store/actions"
-import { useReducer, useEffect } from "react"
+import { ToggleTodoAction, AddTodoAction, ReceiveTodosAction, Filter } from "../../store/actions"
+import { useReducer, useEffect, useState } from "react"
 
 import axios from 'axios'
 
@@ -19,19 +19,20 @@ function todosReducer(todos: Todo[], action: ToggleTodoAction | AddTodoAction | 
     }
 }
 
+
 export const useTodos = () => {
+    const [filter, setFilter] = useState<Filter>('SHOW_ALL')
     const [todos, dispatch] = useReducer(todosReducer, initialTodos)
 
     useEffect(() => {
-        axios.get('/todos').then(res => {
+        API.todos.getTodos.request({}).then(data => {
             dispatch({
                 type: "RECEIVE_TODOS",
-                todos: res.data
+                todos: data
             })
         })
     }, [])
 
-    const all = () => todos
     const addTodo = async (string: string) => {
         if (string === "") {
             return
@@ -42,7 +43,7 @@ export const useTodos = () => {
         dispatch({ type: "ADD_TODO", text, id })
     }
     const toggleTodo = async (id: number) => {
-        await axios.patch('/todos', `id=${id}`).then(res => {
+        await axios.patch(`/todos/${id}`).then(res => {
             console.log(res)
         })
         dispatch({
@@ -50,11 +51,24 @@ export const useTodos = () => {
             id
         })
     }
-
-    return {
-        all,
-        addTodo,
-        toggleTodo,
+    const getVisibleTodos = () => {
+        switch (filter) {
+            case 'SHOW_ALL':
+                return todos
+            case 'SHOW_ACTIVE':
+                return todos.filter(todo => todo.completed === false)
+            case 'SHOW_COMPLETED':
+                return todos.filter(todo => todo.completed === true)
+            default:
+                return todos
+        }
     }
 
+    return {
+        todos,
+        addTodo,
+        toggleTodo,
+        setFilter,
+        getVisibleTodos
+    }
 }

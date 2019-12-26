@@ -1,0 +1,230 @@
+[
+  {
+    "mods": [
+      {
+        "description": "",
+        "interfaces": [
+          {
+            "consumes": [
+              "application/json"
+            ],
+            "description": "获取全部的Todo",
+            "name": "getTodos",
+            "method": "get",
+            "path": "/todos",
+            "response": {
+              "typeArgs": [
+                {
+                  "typeArgs": [],
+                  "typeName": "Todo",
+                  "isDefsType": true,
+                  "templateIndex": -1,
+                  "compileTemplateKeyword": "#/definitions/",
+                  "enum": []
+                }
+              ],
+              "typeName": "Array",
+              "isDefsType": false,
+              "templateIndex": -1,
+              "compileTemplateKeyword": "#/definitions/",
+              "enum": []
+            },
+            "parameters": []
+          },
+          {
+            "consumes": [
+              "application/json"
+            ],
+            "description": "创建todo1",
+            "name": "postTodos",
+            "method": "post",
+            "path": "/todos",
+            "response": {
+              "typeArgs": [],
+              "typeName": "Todo",
+              "isDefsType": true,
+              "templateIndex": -1,
+              "compileTemplateKeyword": "#/definitions/",
+              "enum": []
+            },
+            "parameters": [
+              {
+                "in": "body",
+                "name": "CreateTodoDto",
+                "required": true,
+                "dataType": {
+                  "typeArgs": [],
+                  "typeName": "CreateTodoDto",
+                  "isDefsType": true,
+                  "templateIndex": -1,
+                  "compileTemplateKeyword": "#/definitions/",
+                  "enum": []
+                }
+              }
+            ]
+          },
+          {
+            "consumes": [
+              "application/json"
+            ],
+            "description": "更新todo",
+            "name": "patchTodosById",
+            "method": "patch",
+            "path": "/todos/{id}",
+            "response": {
+              "typeArgs": [],
+              "typeName": "Todo",
+              "isDefsType": true,
+              "templateIndex": -1,
+              "compileTemplateKeyword": "#/definitions/",
+              "enum": []
+            },
+            "parameters": [
+              {
+                "in": "body",
+                "name": "UpdateTodoDto",
+                "required": true,
+                "dataType": {
+                  "typeArgs": [],
+                  "typeName": "UpdateTodoDto",
+                  "isDefsType": true,
+                  "templateIndex": -1,
+                  "compileTemplateKeyword": "#/definitions/",
+                  "enum": []
+                }
+              },
+              {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "dataType": {
+                  "typeArgs": [],
+                  "typeName": "number",
+                  "isDefsType": false,
+                  "templateIndex": -1,
+                  "compileTemplateKeyword": "#/definitions/",
+                  "enum": []
+                }
+              }
+            ]
+          },
+          {
+            "consumes": [
+              "application/json"
+            ],
+            "description": "删除todo",
+            "name": "deleteTodosById",
+            "method": "delete",
+            "path": "/todos/{id}",
+            "response": {
+              "typeArgs": [],
+              "typeName": "Todo",
+              "isDefsType": true,
+              "templateIndex": -1,
+              "compileTemplateKeyword": "#/definitions/",
+              "enum": []
+            },
+            "parameters": [
+              {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "dataType": {
+                  "typeArgs": [],
+                  "typeName": "number",
+                  "isDefsType": false,
+                  "templateIndex": -1,
+                  "compileTemplateKeyword": "#/definitions/",
+                  "enum": []
+                }
+              }
+            ]
+          }
+        ],
+        "name": "todos"
+      }
+    ],
+    "baseClasses": [
+      {
+        "name": "CreateTodoDto",
+        "properties": [
+          {
+            "dataType": {
+              "typeArgs": [],
+              "typeName": "string",
+              "isDefsType": false,
+              "templateIndex": -1,
+              "compileTemplateKeyword": "#/definitions/",
+              "enum": []
+            },
+            "name": "text",
+            "required": true
+          }
+        ],
+        "templateArgs": []
+      },
+      {
+        "name": "Todo",
+        "properties": [
+          {
+            "dataType": {
+              "typeArgs": [],
+              "typeName": "boolean",
+              "isDefsType": false,
+              "templateIndex": -1,
+              "compileTemplateKeyword": "#/definitions/",
+              "enum": []
+            },
+            "name": "completed",
+            "required": true
+          },
+          {
+            "dataType": {
+              "typeArgs": [],
+              "typeName": "number",
+              "isDefsType": false,
+              "templateIndex": -1,
+              "compileTemplateKeyword": "#/definitions/",
+              "enum": []
+            },
+            "name": "id",
+            "required": true
+          },
+          {
+            "dataType": {
+              "typeArgs": [],
+              "typeName": "string",
+              "isDefsType": false,
+              "templateIndex": -1,
+              "compileTemplateKeyword": "#/definitions/",
+              "enum": []
+            },
+            "name": "text",
+            "required": true
+          }
+        ],
+        "templateArgs": []
+      },
+      {
+        "name": "UpdateTodoDto",
+        "properties": [
+          {
+            "dataType": {
+              "typeArgs": [],
+              "typeName": "boolean",
+              "isDefsType": false,
+              "templateIndex": -1,
+              "compileTemplateKeyword": "#/definitions/",
+              "enum": []
+            },
+            "name": "completed",
+            "description": "true: 完成，false：未完成",
+            "required": true
+          }
+        ],
+        "templateArgs": []
+      }
+    ],
+    "name": ""
+  }
+]

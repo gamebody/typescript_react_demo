@@ -1,1 +1,3 @@
-export const getUrl = (any: any, any1: any, any2: any) => {}
+export const getUrl = (url: string, params: any, method: string) => {
+    return url
+}

@@ -1,23 +1,29 @@
-import React, { FC } from 'react'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { FC, useState } from 'react'
 import { Filter as FilterType } from '../store/actions'
 
 type Props = {
-    filter: FilterType,
     onClick: (filter: FilterType) => void
 }
 
-let Filter:FC<Props> = ({ filter, onClick }) => {
+let Filter:FC<Props> = ({ onClick }) => {
+    const [filter, setFilter] = useState<FilterType>('SHOW_ALL')
+
+    const clickHandler = (filter: FilterType) => {
+        setFilter(filter)
+        onClick(filter)
+    }
     return (
         <div>
             { filter === 'SHOW_ALL' ? 
                 '全部' : 
-                <span onClick={() => onClick('SHOW_ALL')}>全部</span> }，
+                <a href="#" onClick={() => clickHandler('SHOW_ALL')}>全部</a> }，
             { filter === 'SHOW_COMPLETED' ?
                 '已完成' :
-                <span onClick={() => onClick('SHOW_COMPLETED')}>已完成</span> }，
+                <a href="#" onClick={() => clickHandler('SHOW_COMPLETED')}>已完成</a> }，
             { filter === 'SHOW_ACTIVE' ? 
                 '未完成' : 
-                <span onClick={() => onClick('SHOW_ACTIVE')}>未完成</span> }，
+                <a href="#" onClick={() => clickHandler('SHOW_ACTIVE')}>未完成</a> }，
         </div>
     )
 }
